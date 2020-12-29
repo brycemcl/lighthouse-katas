@@ -1,38 +1,16 @@
 const squareCode = function (message) {
-	let returnString = ''
-	let column = 0
-	let rowSize = findRowSize(removeSpacesFromString(message))
-	let messageWithoutSpaces = removeSpacesFromString(message)
-	let tempArray = []
+	let returnArray = []
+	let currentColumn = 0
+	let messageWithoutSpaces = message.replace(/ /g, "")
+	let rowSize = Math.ceil(Math.sqrt(messageWithoutSpaces.length))
 	for (character of messageWithoutSpaces) {
-		if (tempArray[column]) {
-			tempArray[column] += character
-		} else {
-			tempArray[column] = character
-		}
-
-		column++
-		if (rowSize === column) {
-			column = 0
+		returnArray[currentColumn] ? returnArray[currentColumn] += character :	returnArray[currentColumn] = character
+		currentColumn++
+		if (rowSize === currentColumn) {
+			currentColumn = 0
 		}
 	}
-	for (currentCurrent of tempArray) {
-		returnString += currentCurrent + ' '
-	}
-	returnString = returnString.slice(0, -1)
-	return returnString
-}
-const removeSpacesFromString = (string) => {
-	let returnString = ''
-	for (character of string) {
-		if (!(character === ' ')) {
-			returnString += character
-		}
-	}
-	return returnString
-}
-const findRowSize = (string) => {
-	return Math.ceil(Math.sqrt(string.length))
+	return returnArray.join(" ")
 }
 
 console.log(squareCode('chill out'))
