@@ -1,10 +1,7 @@
-const checkAir = function (samples, threshold) {
-  let clean = 0;
+const checkAir = function(samples, threshold) {
   let dirty = 0;
-  for (sample of samples) {
-    if (sample === "clean") {
-      clean++;
-    } else if (sample === "dirty") {
+  for (let sample of samples) {
+    if (sample === "dirty") {
       dirty++;
     }
   }
